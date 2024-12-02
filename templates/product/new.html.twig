@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block h1 %}Ajouter un produit{% endblock %}
+
+{% block body %}
+
+   <a class="btn btn-primary" href="{{ path('app_product_index') }}">Gestion des produits</a>
+    {#
+      En twig, il y a 2 façons d'afficher un formulaire Symfony
+      - tout d'un coup avec la fonction twig form() : elle créée l'intégralité du formulaire de la balise form ouvrante à la balise form fermante
+
+      {{ form(formProduct) }}
+
+      syntaxe : parent.enfant
+    #}
+
+    {{ form_start(formProduct) }}
+
+    <div class="row">
+       <div class="col-md-6">
+       {{ form_row(formProduct.name) }}
+       {# {{ form_widget(formProduct.name) }}
+       {{ form_label(formProduct.name) }}
+       {{ form_errors(formProduct.name) }}
+       {{ form_help(formProduct.name) }} #}
+       </div>
+       <div class="col-md-6">{{ form_row(formProduct.price) }}</div>
+    </div>
+
+       
+       {{ form_row(formProduct.description) }}
+
+       <input type="submit" class="btn btn-primary w-100 mt-3" value="Ajouter le produit">
+
+    {{ form_end(formProduct) }}
+    
+    
+{% endblock %}

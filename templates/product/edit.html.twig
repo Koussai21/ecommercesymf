@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block h1 %}Modifier le produit{% endblock %}
+
+{% block body %}
+
+
+
+
+<a class="btn btn-primary" href="{{ path('app_product_index') }}">Gestion des produits</a>
+{{ form_start(formProduct) }}
+
+    <div class="row">
+       <div class="col-md-6">
+       {{ form_row(formProduct.name) }}
+       </div>
+       <div class="col-md-6">{{ form_row(formProduct.price) }}</div>
+    </div>
+
+       
+       {{ form_row(formProduct.description) }}
+
+       <input type="submit" class="btn btn-primary w-100 mt-3" value="Modifier le produit">
+
+    {{ form_end(formProduct) }}
+
+{% endblock %}

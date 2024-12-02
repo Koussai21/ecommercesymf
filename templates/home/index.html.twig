@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %} {# héritage du fichier base.html.twig #}
+
+
+{% block title %}Page principale{% endblock %}
+
+{% block body %}
+
+    <img src="{{ asset('images/ecommerce.jpg') }}" alt="" id="imgAccueil">
+     {{ dump(fruits) }}
+    {% for fruit in fruits %}
+        {# {{ dump(fruit) }} #}
+        <h2>{{ fruit }}</h2>
+    {% endfor %}
+
+    {% for i in 1..5 %}
+        <h2>{{ i }}</h2>
+    {% endfor %}
+
+{% endblock %}
+
+{% block h1 %}
+
+Bonjour 
+
+{% if isConnect %}
+    {{ prenomTwig }}
+{% endif %}
+
+{% endblock %}
+
+{% block javascripts %}
+    <script></script>
+{% endblock %}
+

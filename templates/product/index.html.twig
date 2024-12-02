@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block h1 %}Gestion des produits{% endblock %}
+
+{% block body %}
+    
+      <a class="btn btn-primary" href="{{ path('app_product_new') }}">Ajouter un produit</a>
+
+
+      {% if products %}
+         <table class="table table-hover table-striped table-bordered text-center">
+            <thead>
+                <tr>
+                   <th>ID</th>
+                   <th>Nom</th>
+                   <th>Prix</th>
+                   <th>Description</th>
+                   <th></th>
+                </tr>
+            </thead>
+            <tbody>
+               {% for product in products %}
+                  <tr>
+                     {# objet.property #}
+                     <td>{{ product.id }}</td>
+                     <td>{{ product.name }}</td>
+                     <td>{{ product.price }}</td>
+                     <td>{{ product.description }}</td>
+                     <td>
+                        <a 
+                           title="Fiche {{ product.name }}" 
+                           href="{{ path(   'app_product_show'   ,  {'id': product.id }    ) }}"
+                        ><i class="text-warning" data-feather="file"></i></a>
+                        
+
+
+                        <a href="{{ path('app_product_edit', {'id': product.id})}}">
+                           <i class="text-info" data-feather="edit"></i>
+                        </a>
+
+                        <a 
+                           href="{{ path('app_product_delete', {'id': product.id})}}" 
+                           onclick="return confirm('Etes-vous sûr de vouloir supprimer ce produit ?')"
+                        >
+                           <i class="text-danger" data-feather="trash"></i>
+                        </a>
+
+                        {# {{ ux_icon('lucide:file', {width:'25px', height: '25px', class: 'text-warning'}) }}
+                        {{ ux_icon('lucide:edit', {width:'25px', height: '25px', class: 'text-info'}) }}
+                        {{ ux_icon('lucide:trash-2', {width:'25px', height: '25px', class: 'text-danger'}) }} #}
+
+                        
+                     </td>
+                  </tr>
+               {% endfor %}
+            </tbody>
+         </table>
+      {% else %}
+         <h4 class="fst-italic text-danger text-center">Aucun résultat</h4>
+      {% endif %}
+
+
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+<script src="https://unpkg.com/feather-icons"></script>
+<script>
+      feather.replace();
+    </script>
+
+{% endblock %}
